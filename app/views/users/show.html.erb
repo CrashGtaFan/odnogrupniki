@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-xs-6">
+    <h1>Profile</h1>
+  
+    <table class="table">
+    <tr>
+      <th>email</th>
+      <td><%= @user.email %></td>
+    </tr>
+    <tr>
+      <th>name</th>
+      <td><%= @user.first_name %></td>
+    </tr>
+    <tr>
+      <th>lastname</th>
+      <td><%= @user.last_name %></td>
+    </tr>
+    <tr>
+      <th>image</th>
+      <td><%= image_tag current_user.avatar.url(:medium) %></td>
+    </tr>
+    </table>
+  </div>
+</div>

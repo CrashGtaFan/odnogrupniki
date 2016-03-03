@@ -1,0 +1,55 @@
+<div class="container"> 
+  <div class="col-xs-9 my-style-content">
+    <div class="row my-style-notes">
+        <h4><%= @note.title %></h4> 
+        <p>
+          <strong>Text:</strong>
+          <%= @note.body %>
+        </p>
+        <p>
+          <strong>Image:</strong>
+          <%= image_tag @note.image.url(:medium) %>
+        </p>
+        <%= link_to 'Back', notes_path, class: 'btn btn-success' %>
+        <% if permissions_notes %>
+          <%= link_to 'Update', edit_note_path, class: 'btn btn-warning' %>
+            <%= link_to 'Destroy', note_path,
+                    method: :delete,
+                    data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+        <% else %>
+        <% end %>
+    </div>
+    <dir class="row">
+      <%= form_for([@note, @note.comments.build]) do |f| %>
+        <div class="row col-xs-12">
+          <%= f.label :'Add a comment' %><br>
+          <%= f.text_field :body, class: 'form-control' %>
+        </div>
+        <p>
+          <%= f.submit 'Create comment', class: 'btn btn-success'%>
+        </p>
+      <% end %>  
+    </dir>
+    <h4>discussion</h4>
+    <div class="row col-xs-12">
+      <% @note.comments.each do |comment| %>
+        <div class="row margin-comment">
+          <% if comment.body %>
+            <div class="col-xs-9">
+              <strong>Commenter:</strong>
+              <text><%= comment.body %></text>
+          </div>
+          <div class="col-xs-3">
+              <% if permissions_notes %>
+                <%= link_to 'Destroy', [comment.note, comment],
+                         method: :delete,
+                         data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+              <% else %>
+              <% end %>
+          </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

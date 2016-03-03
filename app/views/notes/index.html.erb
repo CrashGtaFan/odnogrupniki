@@ -1,0 +1,16 @@
+<div class="container col-xs-12">
+  <p>
+    <div>
+      <h2>Listing Notes  <%= link_to 'New note', new_note_path, class: 'btn btn-success' %></h2>
+    </div>
+  </p>
+  <div class="form">
+    <% @notes.each do |note| %>
+      <div class="form-group my-style-articles">
+        <h3><%= note.title %></h3>
+        <p><%= note.body %></p>
+        <%= link_to 'Show', note_path(note), class: 'btn btn-info' %>
+      </div> 
+    <% end %> 
+  </div>   
+</div>
